@@ -15,6 +15,8 @@ import {fetchAnswer, fetchQuestion} from '../../services/question';
 import Header from './components/Header';
 import Loader from '../../components/Loader';
 
+const PER_PAGE = 5;
+
 const getAnswer = async (id: string) => {
   const {data: res} = await fetchAnswer(id);
   return res?.correct_options?.[0]?.id;
@@ -43,7 +45,7 @@ function Home() {
   const [timeRemaining, setTimeRemaining] = useState(0);
 
   useEffect(() => {
-    getNextFiveQuestions();
+    getNextQuestions();
   }, []);
 
   useEffect(() => {
@@ -54,9 +56,9 @@ function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const getNextFiveQuestions = async () => {
+  const getNextQuestions = async () => {
     setLoading(true);
-    const newQuestion = await getQuestions(5);
+    const newQuestion = await getQuestions(PER_PAGE);
     setQuestion(v => [...v, ...newQuestion]);
     setLoading(false);
   };
@@ -111,7 +113,7 @@ function Home() {
                 />
               )}
               showsVerticalScrollIndicator={false}
-              onEndReached={getNextFiveQuestions}
+              onEndReached={getNextQuestions}
               onEndReachedThreshold={2}
             />
           </View>
