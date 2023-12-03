@@ -1,0 +1,22 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "cSpell.words": [
+    "Actionsheet",
+    "appcenter",
+    "browserstack",
+    "Entypo",
+    "Flatlist",
+    "gradlew",
+    "Ionicon",
+    "Ionicons",
+    "persistor",
+    "Signup",
+    "Unfollow",
+    "Viewability",
+    "zipcode",
+    "Zoomable"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
