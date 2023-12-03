@@ -10,15 +10,16 @@ import ThumbsDown from '../../../../assets/images/ThumbsDown.png';
 
 interface IProps {
   question: IQuestion;
+  index: number;
   userAnswers: IUserAnswers;
-  onPressOption: (questionUd: number, optionId: string) => void;
+  onPressOption: (index: number, optionId: string) => void;
 }
 
 function RenderLeftSection(props: IProps) {
-  const {question, userAnswers, onPressOption} = props;
-  const {id, answer, options, user, description} = question;
+  const {question, index, userAnswers, onPressOption} = props;
+  const {answer, options, user, description} = question;
 
-  const userAnswer = userAnswers[id];
+  const userAnswer = userAnswers[index];
   const isAnswered = Boolean(userAnswer);
 
   const renderOptions = () => {
@@ -37,7 +38,7 @@ function RenderLeftSection(props: IProps) {
               ...(isAnsweredOption ? styles.correctOption : {}),
             },
           ]}
-          onPress={() => onPressOption(id, option.id)}>
+          onPress={() => onPressOption(index, option.id)}>
           <Text style={styles.optionText}>{option.answer}</Text>
           {isAnswered && isCorrectOptions ? (
             <Image
@@ -94,12 +95,13 @@ function RenderRightSection() {
 }
 
 function BottomSection(props: IProps) {
-  const {question, userAnswers, onPressOption} = props;
+  const {question, index, userAnswers, onPressOption} = props;
 
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
         <RenderLeftSection
+          index={index}
           question={question}
           userAnswers={userAnswers}
           onPressOption={onPressOption}

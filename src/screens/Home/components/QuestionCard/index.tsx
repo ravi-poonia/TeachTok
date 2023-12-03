@@ -9,7 +9,8 @@ interface IProps {
   question: IQuestion;
   userAnswers: IUserAnswers;
   containerHeight: number;
-  onPressOption: (questionUd: number, optionId: string) => void;
+  index: number;
+  onPressOption: (index: number, optionId: string) => void;
 }
 
 interface IPlaylistBarProps {
@@ -32,13 +33,14 @@ function PlaylistBar(props: IPlaylistBarProps) {
 }
 
 function QuestionCard(props: IProps) {
-  const {question, userAnswers, containerHeight, onPressOption} = props;
+  const {question, index, userAnswers, containerHeight, onPressOption} = props;
 
   return (
     <View style={[styles.container, {height: containerHeight}]}>
       <View style={styles.contentContainer}>
         <RenderQuestion question={question} />
         <BottomSection
+          index={index}
           question={question}
           userAnswers={userAnswers}
           onPressOption={onPressOption}

@@ -101,9 +101,10 @@ function Home() {
                 )
               }
               ref={FlatlistRef}
-              renderItem={({item}) => (
+              renderItem={({item, index}) => (
                 <QuestionCard
                   containerHeight={containerHeight}
+                  index={index}
                   question={item}
                   userAnswers={userAnswers}
                   onPressOption={handleAnswerSubmit}
